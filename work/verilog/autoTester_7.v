@@ -24,27 +24,100 @@ module autoTester_7 (
   
   localparam SOLUTION_ROM = 128'h000f00280050c00b0423800300010001;
   
-  reg [3:0] M_idx_d, M_idx_q = 1'h0;
+  
+  localparam TESTCASE1_testState = 3'd0;
+  localparam TESTCASE2_testState = 3'd1;
+  localparam TESTCASE3_testState = 3'd2;
+  localparam TESTCASE4_testState = 3'd3;
+  localparam TESTCASE5_testState = 3'd4;
+  localparam TESTCASE6_testState = 3'd5;
+  localparam TESTCASE7_testState = 3'd6;
+  localparam TESTCASE8_testState = 3'd7;
+  
+  reg [2:0] M_testState_d, M_testState_q = TESTCASE1_testState;
   
   always @* begin
-    M_idx_d = M_idx_q;
+    M_testState_d = M_testState_q;
     
-    if (M_idx_q == 4'h8) begin
-      M_idx_d = 4'h0;
-    end
-    a = A_ROM[(M_idx_q)*16+15-:16];
-    b = B_ROM[(M_idx_q)*16+15-:16];
-    alufn = ALUFN_ROM[(M_idx_q)*6+5-:6];
-    solution = SOLUTION_ROM[(M_idx_q)*16+15-:16];
-    simError = M_idx_q[0+0-:1];
-    M_idx_d = M_idx_q + 1'h1;
+    a = 16'h0000;
+    b = 16'h0000;
+    alufn = 6'h00;
+    solution = 16'h0000;
+    simError = 1'h0;
+    
+    case (M_testState_q)
+      TESTCASE1_testState: begin
+        a = 16'h0000;
+        b = 16'h0004;
+        alufn = 6'h35;
+        solution = 16'h0001;
+        simError = 1'h0;
+        M_testState_d = TESTCASE2_testState;
+      end
+      TESTCASE2_testState: begin
+        a = 16'h0100;
+        b = 16'h0100;
+        alufn = 6'h33;
+        solution = 16'h0001;
+        simError = 1'h1;
+        M_testState_d = TESTCASE3_testState;
+      end
+      TESTCASE3_testState: begin
+        a = 16'h0006;
+        b = 16'h8005;
+        alufn = 6'h16;
+        solution = 16'h8003;
+        simError = 1'h0;
+        M_testState_d = TESTCASE4_testState;
+      end
+      TESTCASE4_testState: begin
+        a = 16'h2e2b;
+        b = 16'h4563;
+        alufn = 6'h18;
+        solution = 16'h0423;
+        simError = 1'h1;
+        M_testState_d = TESTCASE5_testState;
+      end
+      TESTCASE5_testState: begin
+        a = 16'h8017;
+        b = 16'h0001;
+        alufn = 6'h23;
+        solution = 16'hc00b;
+        simError = 1'h0;
+        M_testState_d = TESTCASE6_testState;
+      end
+      TESTCASE6_testState: begin
+        a = 16'h0005;
+        b = 16'h0004;
+        alufn = 6'h20;
+        solution = 16'h0050;
+        simError = 1'h1;
+        M_testState_d = TESTCASE7_testState;
+      end
+      TESTCASE7_testState: begin
+        a = 16'h0040;
+        b = 16'h0018;
+        alufn = 6'h01;
+        solution = 16'h0028;
+        simError = 1'h0;
+        M_testState_d = TESTCASE8_testState;
+      end
+      TESTCASE8_testState: begin
+        a = 16'h000a;
+        b = 16'h0005;
+        alufn = 6'h00;
+        solution = 16'h000f;
+        simError = 1'h1;
+        M_testState_d = TESTCASE1_testState;
+      end
+    endcase
   end
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_idx_q <= 1'h0;
+      M_testState_q <= 1'h0;
     end else begin
-      M_idx_q <= M_idx_d;
+      M_testState_q <= M_testState_d;
     end
   end
   

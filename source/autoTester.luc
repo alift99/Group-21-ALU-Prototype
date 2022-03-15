@@ -16,6 +16,7 @@ module autoTester (
                  b0000000000000110,
                  b0000000100000000,
                  b0000000000000000};
+    
   const B_ROM = {b0000000000000101,
                  b0000000000011000, 
                  b0000000000000100,
@@ -24,6 +25,7 @@ module autoTester (
                  b1000000000000101,
                  b0000000100000000,
                  b0000000000000100};
+    
   const ALUFN_ROM = {b000000, // Addition
                      b000001, // Subtraction
                      b100000, // Shift left
@@ -32,6 +34,7 @@ module autoTester (
                      b010110, // XOR
                      b110011, // Equals to
                      b110101}; // Less than
+    
   const SOLUTION_ROM = {b0000000000001111, // b1010 + b0101
                         b0000000000101000, // b1000000 - b0011000 
                         b0000000001010000, // b101 << b100
@@ -41,19 +44,82 @@ module autoTester (
                         b0000000000000001, // b100000000 == b100000000
                         b0000000000000001}; // b000 < b100 
   
-  dff idx[4](#INIT(0), .clk(clk), .rst(rst)); // Index for accessing different sets of a,b,alufn & solution
+  fsm testState(.clk(clk), .rst(rst)) = {
+    TESTCASE1,
+    TESTCASE2,
+    TESTCASE3,
+    TESTCASE4,
+    TESTCASE5,
+    TESTCASE6,
+    TESTCASE7,
+    TESTCASE8
+  };
   
   always 
   {
-    if(idx.q == b1000)
+    a = 16b0;
+    b = 16b0;
+    alufn = 6b0;
+    solution = 16b0;
+    simError = 0;
+    case(testState.q)
     {
-      idx.d = b0000;
-    }
-    a = A_ROM[idx.q];
-    b = B_ROM[idx.q];
-    alufn = ALUFN_ROM[idx.q];
-    solution = SOLUTION_ROM[idx.q];
-    simError = idx.q[0]; // Make the ALU simulate an error every other case
-    idx.d = idx.q + 1;    
+      testState.TESTCASE1:
+        a = A_ROM[0];
+        b = B_ROM[0];
+        alufn = ALUFN_ROM[0];
+        solution = SOLUTION_ROM[0];
+        simError = 0;
+        testState.d = testState.TESTCASE2;  
+      testState.TESTCASE2:
+        a = A_ROM[1];
+        b = B_ROM[1];
+        alufn = ALUFN_ROM[1];
+        solution = SOLUTION_ROM[1];
+        simError = 1;
+        testState.d = testState.TESTCASE3; 
+      testState.TESTCASE3:
+        a = A_ROM[2];
+        b = B_ROM[2];
+        alufn = ALUFN_ROM[2];
+        solution = SOLUTION_ROM[2];
+        simError = 0;
+        testState.d = testState.TESTCASE4; 
+      testState.TESTCASE4:
+        a = A_ROM[3];
+        b = B_ROM[3];
+        alufn = ALUFN_ROM[3];
+        solution = SOLUTION_ROM[3];
+        simError = 1;
+        testState.d = testState.TESTCASE5; 
+      testState.TESTCASE5:
+        a = A_ROM[4];
+        b = B_ROM[4];
+        alufn = ALUFN_ROM[4];
+        solution = SOLUTION_ROM[4];
+        simError = 0;
+        testState.d = testState.TESTCASE6; 
+      testState.TESTCASE6:
+        a = A_ROM[5];
+        b = B_ROM[5];
+        alufn = ALUFN_ROM[5];
+        solution = SOLUTION_ROM[5];
+        simError = 1;
+        testState.d = testState.TESTCASE7; 
+      testState.TESTCASE7:
+        a = A_ROM[6];
+        b = B_ROM[6];
+        alufn = ALUFN_ROM[6];
+        solution = SOLUTION_ROM[6];
+        simError = 0;
+        testState.d = testState.TESTCASE8; 
+      testState.TESTCASE8:
+        a = A_ROM[7];
+        b = B_ROM[7];
+        alufn = ALUFN_ROM[7];
+        solution = SOLUTION_ROM[7];
+        simError = 1;
+        testState.d = testState.TESTCASE1;                  
+    }       
   }
 }
