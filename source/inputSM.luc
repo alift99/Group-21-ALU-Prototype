@@ -1,0 +1,82 @@
+module inputSM (
+    input input_switches[16],
+    input enter_button[1],
+    input clk,  // clock
+    input rst,  // reset
+    output a_out[16],
+    output b_out[16],
+    output alufn_out[6],
+    output displayState
+) 
+{  
+  
+  dff a[16](#INIT(0), .clk(clk), .rst(rst));
+  dff b[16](#INIT(0), .clk(clk), .rst(rst));
+  dff alufn[6](#INIT(0), .clk(clk), .rst(rst));
+  
+  fsm statemachine(.clk(clk), .rst(rst)) = {
+    WAITFIRSTPRESS,
+    WAITSECONDPRESS,
+    WAITTHIRDPRESS,
+    WAITFOURTHPRESS
+  };
+
+  always 
+  {
+    a_out = 16b0;
+    b_out = 16b0;
+    alufn_out = 6b0; 
+    case (statemachine.q)
+    {
+      statemachine.WAITFIRSTPRESS:
+        if (enter_button)
+        {
+          a.d[15:0] = input_switches[15:0];
+          statemachine.d = statemachine.WAITSECONDPRESS;
+          displayState = 0;
+        } 
+        else
+        {    
+          statemachine.d = statemachine.WAITFIRSTPRESS;
+          displayState = 0;
+        }  
+      statemachine.WAITSECONDPRESS:
+        if (enter_button)
+        {
+          b.d[15:0] = input_switches[15:0];
+          statemachine.d = statemachine.WAITTHIRDPRESS;
+          displayState = 0;
+        }    
+        else
+        {        
+          statemachine.d = statemachine.WAITSECONDPRESS;
+          displayState = 0;
+        }  
+     statemachine.WAITTHIRDPRESS:
+        if (enter_button) // Third press
+        {
+          alufn.d = input_switches[5:0];
+          statemachine.d = statemachine.WAITFOURTHPRESS;
+          displayState = 1;
+        }    
+        else
+        {        
+          statemachine.d = statemachine.WAITTHIRDPRESS;
+          displayState = 0;
+        }     
+      statemachine.WAITFOURTHPRESS:
+        if(enter_button) // Fourth press
+        {
+          statemachine.d = statemachine.WAITFIRSTPRESS;   
+          displayState = 0;        
+        }
+        else
+        {
+          a_out = a.q;
+          b_out = b.q;
+          alufn_out = alufn.q;
+          statemachine.d = statemachine.WAITFOURTHPRESS; 
+          displayState = 1;
+        }   
+  }  
+}

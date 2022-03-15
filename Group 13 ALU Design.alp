@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Group 13 ALU Design" board="Alchitry Au" language="Lucid" version="3">
+  <files>
+    <src>adder.luc</src>
+    <component>edge_detector.luc</component>
+    <src>alu.luc</src>
+    <src top="true">au_top.luc</src>
+    <component>reset_conditioner.luc</component>
+    <src>boolean.luc</src>
+    <component>pipeline.luc</component>
+    <component>counter.luc</component>
+    <src>inputSM.luc</src>
+    <src>shifter.luc</src>
+    <src>compare.luc</src>
+    <component>button_conditioner.luc</component>
+    <constraint lib="true">alchitry.acf</constraint>
+    <constraint lib="true">io.acf</constraint>
+    <constraint lib="true">au.xdc</constraint>
+  </files>
+</project>

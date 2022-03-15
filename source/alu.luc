@@ -1,0 +1,59 @@
+module alu (
+  input a[16],
+  input b[16],
+  input alufn[6],
+  output out[16],
+  output zvn[3]
+)
+{
+
+  adder bodyOfAdder;
+  shifter bodyOfShifter;
+  boolean bodyOfBoolean;
+  compare bodyOfCompare;
+
+  sig z;
+  sig v;
+  sig n;
+
+  always 
+  {
+	    //passes in alufn signal, a and b into adder
+    	bodyOfAdder.alufn = alufn;
+  	  bodyOfAdder.a = a;
+  	  bodyOfAdder.b = b;
+  
+  	  //stores output of adder to 3 variables: z, v and n. 
+  	  z = bodyOfAdder.z;
+  	  v = bodyOfAdder.v;
+  	  n = bodyOfAdder.n;
+  
+    	//stores value of z,v and n into its respective arrays
+    	zvn[0] = z;
+    	zvn[1] = v;
+    	zvn[2] = n;  
+  	
+    	//similarly, passing in the values for compare and boolean body 
+    	bodyOfCompare.alufn = alufn;
+    	bodyOfCompare.z = z;
+    	bodyOfCompare.v = v;
+    	bodyOfCompare.n = n;
+    		
+    	bodyOfBoolean.alufn = alufn;
+    	bodyOfBoolean.a = a;
+    	bodyOfBoolean.b = b; 
+    
+    	bodyOfShifter.alufn = alufn;
+    	bodyOfShifter.a = a;
+    	bodyOfShifter.b = b[3:0];
+	
+    	case(alufn[5:4])
+    {		
+		    b00: out = bodyOfAdder.out;
+		    b01: out = bodyOfBoolean.out;
+		    b10: out = bodyOfShifter.out;
+		    b11: out = bodyOfCompare.out;
+		    default: out = 16b0;		
+		  }
+	  }
+}

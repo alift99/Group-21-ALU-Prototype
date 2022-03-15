@@ -1,0 +1,24 @@
+ module compare (
+    input z,
+    input v,
+    input n,
+    input alufn[6],
+    output out[16]
+  ) 
+{
+  always 
+  {
+    out = 16b0;    
+    case (alufn)
+    {
+      default:
+        out[0] = 0;
+      b110011: // Equals to
+        out[0] = z;
+      b110101: // Less than
+        out[0] = n ^ v;
+      b110111: // Less than or Equal to
+        out[0] = z | (n ^ v);
+    }
+  }
+}
