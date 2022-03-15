@@ -29,7 +29,7 @@ module inputSM (
     case (statemachine.q)
     {
       statemachine.WAITFIRSTPRESS:
-        if (enter_button)
+        if (enter_button) // First press
         {
           a.d[15:0] = input_switches[15:0];
           statemachine.d = statemachine.WAITSECONDPRESS;
@@ -41,7 +41,7 @@ module inputSM (
           displayState = 0;
         }  
       statemachine.WAITSECONDPRESS:
-        if (enter_button)
+        if (enter_button) // Second press
         {
           b.d[15:0] = input_switches[15:0];
           statemachine.d = statemachine.WAITTHIRDPRESS;
@@ -57,7 +57,7 @@ module inputSM (
         {
           alufn.d = input_switches[5:0];
           statemachine.d = statemachine.WAITFOURTHPRESS;
-          displayState = 1;
+          displayState = 0;
         }    
         else
         {        

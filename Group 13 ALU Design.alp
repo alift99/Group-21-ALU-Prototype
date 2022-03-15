@@ -4,14 +4,15 @@
     <src>adder.luc</src>
     <component>edge_detector.luc</component>
     <src>alu.luc</src>
+    <component>counter.luc</component>
+    <src>inputSM.luc</src>
+    <src>compare.luc</src>
     <src top="true">au_top.luc</src>
     <component>reset_conditioner.luc</component>
     <src>boolean.luc</src>
+    <src>autoTester.luc</src>
     <component>pipeline.luc</component>
-    <component>counter.luc</component>
-    <src>inputSM.luc</src>
     <src>shifter.luc</src>
-    <src>compare.luc</src>
     <component>button_conditioner.luc</component>
     <constraint lib="true">alchitry.acf</constraint>
     <constraint lib="true">io.acf</constraint>

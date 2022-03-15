@@ -84,16 +84,18 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/adder_7.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/adder_9.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/alu_4.v}
-  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/boolean_9.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/autoTester_7.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/boolean_11.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/button_conditioner_3.v}
-  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/compare_10.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/compare_12.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/counter_6.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/edge_detector_2.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/inputSM_5.v}
-  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/pipeline_6.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/pipeline_8.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/reset_conditioner_1.v}
-  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/shifter_8.v}
+  {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/shifter_10.v}
   {D:/Alchitry Projects/Group 13 ALU Design/work/vivado/Group 13 ALU Design/Group 13 ALU Design.srcs/sources_1/imports/verilog/au_top_0.v}
 }
 OPTRACE "Adding files" END { }

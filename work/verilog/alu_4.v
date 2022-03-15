@@ -8,62 +8,63 @@ module alu_4 (
     input [15:0] a,
     input [15:0] b,
     input [5:0] alufn,
+    input simError,
     output reg [15:0] out,
     output reg [2:0] zvn
   );
   
   
   
-  wire [16-1:0] M_bodyOfAdder_out;
-  wire [1-1:0] M_bodyOfAdder_z;
-  wire [1-1:0] M_bodyOfAdder_v;
-  wire [1-1:0] M_bodyOfAdder_n;
-  reg [16-1:0] M_bodyOfAdder_a;
-  reg [16-1:0] M_bodyOfAdder_b;
-  reg [6-1:0] M_bodyOfAdder_alufn;
-  adder_7 bodyOfAdder (
-    .a(M_bodyOfAdder_a),
-    .b(M_bodyOfAdder_b),
-    .alufn(M_bodyOfAdder_alufn),
-    .out(M_bodyOfAdder_out),
-    .z(M_bodyOfAdder_z),
-    .v(M_bodyOfAdder_v),
-    .n(M_bodyOfAdder_n)
+  wire [16-1:0] M_adderModule_out;
+  wire [1-1:0] M_adderModule_z;
+  wire [1-1:0] M_adderModule_v;
+  wire [1-1:0] M_adderModule_n;
+  reg [16-1:0] M_adderModule_a;
+  reg [16-1:0] M_adderModule_b;
+  reg [6-1:0] M_adderModule_alufn;
+  adder_9 adderModule (
+    .a(M_adderModule_a),
+    .b(M_adderModule_b),
+    .alufn(M_adderModule_alufn),
+    .out(M_adderModule_out),
+    .z(M_adderModule_z),
+    .v(M_adderModule_v),
+    .n(M_adderModule_n)
   );
   
-  wire [16-1:0] M_bodyOfShifter_out;
-  reg [16-1:0] M_bodyOfShifter_a;
-  reg [4-1:0] M_bodyOfShifter_b;
-  reg [6-1:0] M_bodyOfShifter_alufn;
-  shifter_8 bodyOfShifter (
-    .a(M_bodyOfShifter_a),
-    .b(M_bodyOfShifter_b),
-    .alufn(M_bodyOfShifter_alufn),
-    .out(M_bodyOfShifter_out)
+  wire [16-1:0] M_shifterModule_out;
+  reg [16-1:0] M_shifterModule_a;
+  reg [4-1:0] M_shifterModule_b;
+  reg [6-1:0] M_shifterModule_alufn;
+  shifter_10 shifterModule (
+    .a(M_shifterModule_a),
+    .b(M_shifterModule_b),
+    .alufn(M_shifterModule_alufn),
+    .out(M_shifterModule_out)
   );
   
-  wire [16-1:0] M_bodyOfBoolean_out;
-  reg [16-1:0] M_bodyOfBoolean_a;
-  reg [16-1:0] M_bodyOfBoolean_b;
-  reg [6-1:0] M_bodyOfBoolean_alufn;
-  boolean_9 bodyOfBoolean (
-    .a(M_bodyOfBoolean_a),
-    .b(M_bodyOfBoolean_b),
-    .alufn(M_bodyOfBoolean_alufn),
-    .out(M_bodyOfBoolean_out)
+  wire [16-1:0] M_booleanModule_out;
+  reg [16-1:0] M_booleanModule_a;
+  reg [16-1:0] M_booleanModule_b;
+  reg [6-1:0] M_booleanModule_alufn;
+  boolean_11 booleanModule (
+    .a(M_booleanModule_a),
+    .b(M_booleanModule_b),
+    .alufn(M_booleanModule_alufn),
+    .out(M_booleanModule_out)
   );
   
-  wire [16-1:0] M_bodyOfCompare_out;
-  reg [1-1:0] M_bodyOfCompare_z;
-  reg [1-1:0] M_bodyOfCompare_v;
-  reg [1-1:0] M_bodyOfCompare_n;
-  reg [6-1:0] M_bodyOfCompare_alufn;
-  compare_10 bodyOfCompare (
-    .z(M_bodyOfCompare_z),
-    .v(M_bodyOfCompare_v),
-    .n(M_bodyOfCompare_n),
-    .alufn(M_bodyOfCompare_alufn),
-    .out(M_bodyOfCompare_out)
+  wire [16-1:0] M_compareModule_out;
+  reg [1-1:0] M_compareModule_z;
+  reg [1-1:0] M_compareModule_v;
+  reg [1-1:0] M_compareModule_n;
+  reg [6-1:0] M_compareModule_alufn;
+  compare_12 compareModule (
+    .z(M_compareModule_z),
+    .v(M_compareModule_v),
+    .n(M_compareModule_n),
+    .alufn(M_compareModule_alufn),
+    .out(M_compareModule_out)
   );
   
   reg z;
@@ -72,43 +73,51 @@ module alu_4 (
   
   reg n;
   
+  reg [15:0] tempOut;
+  
   always @* begin
-    M_bodyOfAdder_alufn = alufn;
-    M_bodyOfAdder_a = a;
-    M_bodyOfAdder_b = b;
-    z = M_bodyOfAdder_z;
-    v = M_bodyOfAdder_v;
-    n = M_bodyOfAdder_n;
+    M_adderModule_alufn = alufn;
+    M_adderModule_a = a;
+    M_adderModule_b = b;
+    z = M_adderModule_z;
+    v = M_adderModule_v;
+    n = M_adderModule_n;
     zvn[0+0-:1] = z;
     zvn[1+0-:1] = v;
     zvn[2+0-:1] = n;
-    M_bodyOfCompare_alufn = alufn;
-    M_bodyOfCompare_z = z;
-    M_bodyOfCompare_v = v;
-    M_bodyOfCompare_n = n;
-    M_bodyOfBoolean_alufn = alufn;
-    M_bodyOfBoolean_a = a;
-    M_bodyOfBoolean_b = b;
-    M_bodyOfShifter_alufn = alufn;
-    M_bodyOfShifter_a = a;
-    M_bodyOfShifter_b = b[0+3-:4];
+    M_compareModule_alufn = alufn;
+    M_compareModule_z = z;
+    M_compareModule_v = v;
+    M_compareModule_n = n;
+    M_booleanModule_alufn = alufn;
+    M_booleanModule_a = a;
+    M_booleanModule_b = b;
+    M_shifterModule_alufn = alufn;
+    M_shifterModule_a = a;
+    M_shifterModule_b = b[0+3-:4];
     
     case (alufn[4+1-:2])
       2'h0: begin
-        out = M_bodyOfAdder_out;
+        tempOut = M_adderModule_out;
       end
       2'h1: begin
-        out = M_bodyOfBoolean_out;
+        tempOut = M_booleanModule_out;
       end
       2'h2: begin
-        out = M_bodyOfShifter_out;
+        tempOut = M_shifterModule_out;
       end
       2'h3: begin
-        out = M_bodyOfCompare_out;
+        tempOut = M_compareModule_out;
       end
       default: begin
-        out = 16'h0000;
+        tempOut = 16'h0000;
       end
     endcase
+    if (simError) begin
+      tempOut[0+0-:1] = ~tempOut[0+0-:1];
+      out = tempOut;
+    end else begin
+      out = tempOut;
+    end
   end
 endmodule

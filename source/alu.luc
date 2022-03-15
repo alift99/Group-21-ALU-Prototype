@@ -2,58 +2,74 @@ module alu (
   input a[16],
   input b[16],
   input alufn[6],
+  input simError,  
   output out[16],
   output zvn[3]
 )
 {
 
-  adder bodyOfAdder;
-  shifter bodyOfShifter;
-  boolean bodyOfBoolean;
-  compare bodyOfCompare;
+  adder adderModule;
+  shifter shifterModule;
+  boolean booleanModule;
+  compare compareModule;
 
   sig z;
   sig v;
   sig n;
+  sig tempOut[16];
 
   always 
   {
 	    //passes in alufn signal, a and b into adder
-    	bodyOfAdder.alufn = alufn;
-  	  bodyOfAdder.a = a;
-  	  bodyOfAdder.b = b;
+    	adderModule.alufn = alufn;
+  	  adderModule.a = a;
+  	  adderModule.b = b;
   
   	  //stores output of adder to 3 variables: z, v and n. 
-  	  z = bodyOfAdder.z;
-  	  v = bodyOfAdder.v;
-  	  n = bodyOfAdder.n;
+  	  z = adderModule.z;
+  	  v = adderModule.v;
+  	  n = adderModule.n;
   
-    	//stores value of z,v and n into its respective arrays
+    	//outputs z,v and n
     	zvn[0] = z;
     	zvn[1] = v;
     	zvn[2] = n;  
   	
-    	//similarly, passing in the values for compare and boolean body 
-    	bodyOfCompare.alufn = alufn;
-    	bodyOfCompare.z = z;
-    	bodyOfCompare.v = v;
-    	bodyOfCompare.n = n;
+    	//similarly, passing in the values for compare and boolean
+    	compareModule.alufn = alufn;
+    	compareModule.z = z;
+    	compareModule.v = v;
+    	compareModule.n = n;
     		
-    	bodyOfBoolean.alufn = alufn;
-    	bodyOfBoolean.a = a;
-    	bodyOfBoolean.b = b; 
+    	booleanModule.alufn = alufn;
+    	booleanModule.a = a;
+    	booleanModule.b = b; 
     
-    	bodyOfShifter.alufn = alufn;
-    	bodyOfShifter.a = a;
-    	bodyOfShifter.b = b[3:0];
+    	shifterModule.alufn = alufn;
+    	shifterModule.a = a;
+    	shifterModule.b = b[3:0];
 	
     	case(alufn[5:4])
     {		
-		    b00: out = bodyOfAdder.out;
-		    b01: out = bodyOfBoolean.out;
-		    b10: out = bodyOfShifter.out;
-		    b11: out = bodyOfCompare.out;
-		    default: out = 16b0;		
+		    b00: 
+        tempOut = adderModule.out;
+		    b01: 
+        tempOut = booleanModule.out;
+		    b10: 
+        tempOut = shifterModule.out;
+		    b11: 
+        tempOut = compareModule.out;
+		    default: 
+        tempOut = 16b0;		
 		  }
+    if (simError)
+    {
+      tempOut[0] = ~tempOut[0];
+      out = tempOut;
+    }    
+    else
+    {  
+      out = tempOut;
+    }
 	  }
 }
