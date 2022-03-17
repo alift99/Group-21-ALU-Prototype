@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Mar 16 07:49:14 2022
+| Date         : Thu Mar 17 12:50:11 2022
 | Host         : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              65 |           26 |
+| No           | No                    | No                     |              65 |           34 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              44 |           15 |
+| No           | Yes                   | No                     |              44 |           17 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              78 |           21 |
+| Yes          | Yes                   | No                     |              78 |           24 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -75,15 +75,15 @@ Table of Contents
 +--------------------------------------+---------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
 |  buttoncond_gen_0[0].buttoncond/E[0] |                                                   |                                                       |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                       |                                                   | reset_cond/M_reset_cond_in                            |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG                       |                                                   |                                                       |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG                       | inputMachine/M_alufn_d                            | reset_cond/Q[0]                                       |                1 |              6 |         6.00 |
-|  slowclock/M_ctr_q_reg[28]_0         |                                                   | reset_cond/Q[0]                                       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                       |                                                   |                                                       |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG                       | inputMachine/M_alufn_d                            | reset_cond/Q[0]                                       |                2 |              6 |         3.00 |
+|  slowclock/M_ctr_q_reg[28]_0         |                                                   | reset_cond/Q[0]                                       |                5 |              8 |         1.60 |
 |  clk_IBUF_BUFG                       | inputMachine/M_a_d                                | reset_cond/Q[0]                                       |                5 |             16 |         3.20 |
-|  clk_IBUF_BUFG                       | inputMachine/M_b_q[15]_i_1_n_1                    | reset_cond/Q[0]                                       |                5 |             16 |         3.20 |
-|  clk_IBUF_BUFG                       | buttoncond_gen_0[1].buttoncond/sel                | buttoncond_gen_0[1].buttoncond/sync/clear             |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG                       | inputMachine/M_b_q[15]_i_1_n_1                    | reset_cond/Q[0]                                       |                7 |             16 |         2.29 |
 |  clk_IBUF_BUFG                       | buttoncond_gen_0[0].buttoncond/M_ctr_q[0]_i_2_n_1 | buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG                       |                                                   | reset_cond/Q[0]                                       |               11 |             32 |         2.91 |
-|  n_0_305_BUFG                        |                                                   |                                                       |               21 |             58 |         2.76 |
+|  clk_IBUF_BUFG                       | buttoncond_gen_0[1].buttoncond/sel                | buttoncond_gen_0[1].buttoncond/sync/clear             |                5 |             20 |         4.00 |
+|  clk_IBUF_BUFG                       |                                                   | reset_cond/Q[0]                                       |               10 |             32 |         3.20 |
+|  n_0_305_BUFG                        |                                                   |                                                       |               27 |             58 |         2.15 |
 +--------------------------------------+---------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
 
 

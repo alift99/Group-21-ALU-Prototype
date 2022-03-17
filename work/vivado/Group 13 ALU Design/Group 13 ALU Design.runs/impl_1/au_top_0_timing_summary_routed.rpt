@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Mar 16 07:49:36 2022
+| Date         : Thu Mar 17 12:50:45 2022
 | Host         : LAPTOP-MQNOE1QL running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file au_top_0_timing_summary_routed.rpt -pb au_top_0_timing_summary_routed.pb -rpx au_top_0_timing_summary_routed.rpx -warn_on_violation
 | Design       : au_top_0
@@ -43,7 +43,7 @@ Table of Contents
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
 4. checking unconstrained_internal_endpoints (75)
-5. checking no_input_delay (19)
+5. checking no_input_delay (20)
 6. checking no_output_delay (20)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -164,9 +164,9 @@ Table of Contents
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (19)
+5. checking no_input_delay (20)
 -------------------------------
- There are 19 input ports with no input delay specified. (HIGH)
+ There are 20 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -218,7 +218,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      3.668        0.000                      0                  267        0.194        0.000                      0                  267        4.500        0.000                       0                   121  
+      4.157        0.000                      0                  267        0.166        0.000                      0                  267        4.500        0.000                       0                   121  
 
 
 All user specified timing constraints are met.
@@ -241,7 +241,7 @@ clk_0  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk_0               3.668        0.000                      0                  267        0.194        0.000                      0                  267        4.500        0.000                       0                   121  
+clk_0               4.157        0.000                      0                  267        0.166        0.000                      0                  267        4.500        0.000                       0                   121  
 
 
 ------------------------------------------------------------------------------------------------
@@ -272,15 +272,15 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  clk_0
   To Clock:  clk_0
 
-Setup :            0  Failing Endpoints,  Worst Slack        3.668ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.194ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        4.157ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.166ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             3.668ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            inputMachine/M_a_q_reg[12]/CE
@@ -288,12 +288,12 @@ Slack (MET) :             3.668ns  (required time - arrival time)
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.843ns  (logic 1.104ns (18.894%)  route 4.739ns (81.106%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.047ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.843ns = ( 14.843 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -308,22 +308,22 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.657    10.992    inputMachine/M_a_d
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[12]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[12]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -332,18 +332,18 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.438    14.843    inputMachine/CLK
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[12]/C
-                         clock pessimism              0.259    15.102    
-                         clock uncertainty           -0.035    15.067    
-    SLICE_X39Y33         FDRE (Setup_fdre_C_CE)      -0.407    14.660    inputMachine/M_a_q_reg[12]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[12]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[12]
   -------------------------------------------------------------------
-                         required time                         14.660    
-                         arrival time                         -10.992    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.668    
+                         slack                                  4.157    
 
-Slack (MET) :             3.668ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            inputMachine/M_a_q_reg[13]/CE
@@ -351,12 +351,12 @@ Slack (MET) :             3.668ns  (required time - arrival time)
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.843ns  (logic 1.104ns (18.894%)  route 4.739ns (81.106%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.047ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.843ns = ( 14.843 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -371,22 +371,22 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.657    10.992    inputMachine/M_a_d
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[13]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[13]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -395,18 +395,81 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.438    14.843    inputMachine/CLK
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[13]/C
-                         clock pessimism              0.259    15.102    
-                         clock uncertainty           -0.035    15.067    
-    SLICE_X39Y33         FDRE (Setup_fdre_C_CE)      -0.407    14.660    inputMachine/M_a_q_reg[13]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[13]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[13]
   -------------------------------------------------------------------
-                         required time                         14.660    
-                         arrival time                         -10.992    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.668    
+                         slack                                  4.157    
 
-Slack (MET) :             3.668ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
+  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            inputMachine/M_a_q_reg[1]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
+  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[1]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[1]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[1]
+  -------------------------------------------------------------------
+                         required time                         14.682    
+                         arrival time                         -10.525    
+  -------------------------------------------------------------------
+                         slack                                  4.157    
+
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            inputMachine/M_a_q_reg[6]/CE
@@ -414,12 +477,12 @@ Slack (MET) :             3.668ns  (required time - arrival time)
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.843ns  (logic 1.104ns (18.894%)  route 4.739ns (81.106%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.047ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.843ns = ( 14.843 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -434,22 +497,22 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.657    10.992    inputMachine/M_a_d
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[6]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[6]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -458,31 +521,31 @@ Slack (MET) :             3.668ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.438    14.843    inputMachine/CLK
-    SLICE_X39Y33         FDRE                                         r  inputMachine/M_a_q_reg[6]/C
-                         clock pessimism              0.259    15.102    
-                         clock uncertainty           -0.035    15.067    
-    SLICE_X39Y33         FDRE (Setup_fdre_C_CE)      -0.407    14.660    inputMachine/M_a_q_reg[6]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[6]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[6]
   -------------------------------------------------------------------
-                         required time                         14.660    
-                         arrival time                         -10.992    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.668    
+                         slack                                  4.157    
 
-Slack (MET) :             3.678ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[10]/CE
+  Destination:            inputMachine/M_a_q_reg[7]/CE
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.835ns  (logic 1.104ns (18.921%)  route 4.731ns (81.079%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -497,22 +560,22 @@ Slack (MET) :             3.678ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.649    10.984    inputMachine/M_a_d
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[10]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[7]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -521,31 +584,31 @@ Slack (MET) :             3.678ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[10]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X37Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[10]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[7]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[7]
   -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.984    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.678    
+                         slack                                  4.157    
 
-Slack (MET) :             3.678ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[14]/CE
+  Destination:            inputMachine/M_a_q_reg[8]/CE
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.835ns  (logic 1.104ns (18.921%)  route 4.731ns (81.079%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -560,85 +623,22 @@ Slack (MET) :             3.678ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.649    10.984    inputMachine/M_a_d
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[14]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[14]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X37Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[14]
-  -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.984    
-  -------------------------------------------------------------------
-                         slack                                  3.678    
-
-Slack (MET) :             3.678ns  (required time - arrival time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[15]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.835ns  (logic 1.104ns (18.921%)  route 4.731ns (81.079%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.649    10.984    inputMachine/M_a_d
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[15]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[8]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -647,144 +647,18 @@ Slack (MET) :             3.678ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[15]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X37Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[15]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[8]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[8]
   -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.984    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.678    
+                         slack                                  4.157    
 
-Slack (MET) :             3.678ns  (required time - arrival time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[4]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.835ns  (logic 1.104ns (18.921%)  route 4.731ns (81.079%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.649    10.984    inputMachine/M_a_d
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[4]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X37Y35         FDRE                                         r  inputMachine/M_a_q_reg[4]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X37Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[4]
-  -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.984    
-  -------------------------------------------------------------------
-                         slack                                  3.678    
-
-Slack (MET) :             3.810ns  (required time - arrival time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[11]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.703ns  (logic 1.104ns (19.359%)  route 4.599ns (80.641%))
-  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
-  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Total Input Jitter      (TIJ):    0.000ns
-    Discrete Jitter          (DJ):    0.000ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.972     3.488    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.517    10.852    inputMachine/M_a_d
-    SLICE_X39Y35         FDRE                                         r  inputMachine/M_a_q_reg[11]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)     10.000    10.000 r  
-    N14                                               0.000    10.000 r  clk (IN)
-                         net (fo=0)                   0.000    10.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           1.868    13.314    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X39Y35         FDRE                                         r  inputMachine/M_a_q_reg[11]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X39Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[11]
-  -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.852    
-  -------------------------------------------------------------------
-                         slack                                  3.810    
-
-Slack (MET) :             3.810ns  (required time - arrival time)
+Slack (MET) :             4.157ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Destination:            inputMachine/M_a_q_reg[9]/CE
@@ -792,12 +666,12 @@ Slack (MET) :             3.810ns  (required time - arrival time)
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.703ns  (logic 1.104ns (19.359%)  route 4.599ns (80.641%))
+  Data Path Delay:        5.373ns  (logic 1.104ns (20.545%)  route 4.269ns (79.455%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.045ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.845ns = ( 14.845 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -812,22 +686,22 @@ Slack (MET) :             3.810ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.517    10.852    inputMachine/M_a_d
-    SLICE_X39Y35         FDRE                                         r  inputMachine/M_a_q_reg[9]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.261     9.503    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.655 r  inputMachine/M_a_q[15]_i_1/O
+                         net (fo=16, routed)          0.870    10.525    inputMachine/M_a_d
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[9]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -836,31 +710,31 @@ Slack (MET) :             3.810ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.440    14.845    inputMachine/CLK
-    SLICE_X39Y35         FDRE                                         r  inputMachine/M_a_q_reg[9]/C
-                         clock pessimism              0.259    15.104    
-                         clock uncertainty           -0.035    15.069    
-    SLICE_X39Y35         FDRE (Setup_fdre_C_CE)      -0.407    14.662    inputMachine/M_a_q_reg[9]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X47Y40         FDRE                                         r  inputMachine/M_a_q_reg[9]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X47Y40         FDRE (Setup_fdre_C_CE)      -0.407    14.682    inputMachine/M_a_q_reg[9]
   -------------------------------------------------------------------
-                         required time                         14.662    
-                         arrival time                         -10.852    
+                         required time                         14.682    
+                         arrival time                         -10.525    
   -------------------------------------------------------------------
-                         slack                                  3.810    
+                         slack                                  4.157    
 
-Slack (MET) :             3.827ns  (required time - arrival time)
+Slack (MET) :             4.182ns  (required time - arrival time)
   Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            inputMachine/M_a_q_reg[0]/CE
+  Destination:            inputMachine/M_b_q_reg[0]/CE
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        5.716ns  (logic 1.104ns (19.313%)  route 4.612ns (80.687%))
+  Data Path Delay:        5.343ns  (logic 1.104ns (20.664%)  route 4.239ns (79.336%))
   Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
-  Clock Path Skew:        -0.050ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.840ns = ( 14.840 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.149ns
-    Clock Pessimism Removal (CPR):    0.259ns
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -875,22 +749,22 @@ Slack (MET) :             3.827ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.488    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.565     5.149    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y41         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y41         FDRE (Prop_fdre_C_Q)         0.456     5.605 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.685     6.291    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
-    SLICE_X40Y41         LUT4 (Prop_lut4_I2_O)        0.124     6.415 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
-                         net (fo=1, routed)           0.585     7.000    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
-    SLICE_X40Y40         LUT5 (Prop_lut5_I4_O)        0.124     7.124 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
-                         net (fo=1, routed)           0.560     7.684    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
-    SLICE_X40Y37         LUT6 (Prop_lut6_I4_O)        0.124     7.808 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
-                         net (fo=3, routed)           0.426     8.234    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
-    SLICE_X40Y38         LUT2 (Prop_lut2_I0_O)        0.124     8.358 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
-                         net (fo=44, routed)          1.825    10.183    inputMachine/M_inputMachine_enter_button
-    SLICE_X39Y33         LUT3 (Prop_lut3_I0_O)        0.152    10.335 r  inputMachine/M_a_q[15]_i_1/O
-                         net (fo=16, routed)          0.531    10.866    inputMachine/M_a_d
-    SLICE_X38Y31         FDRE                                         r  inputMachine/M_a_q_reg[0]/CE
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.263     9.505    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.657 r  inputMachine/M_b_q[15]_i_1/O
+                         net (fo=16, routed)          0.837    10.494    inputMachine/M_b_q[15]_i_1_n_1
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)     10.000    10.000 r  
@@ -899,16 +773,142 @@ Slack (MET) :             3.827ns  (required time - arrival time)
     N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.868    13.314    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         1.435    14.840    inputMachine/CLK
-    SLICE_X38Y31         FDRE                                         r  inputMachine/M_a_q_reg[0]/C
-                         clock pessimism              0.259    15.099    
-                         clock uncertainty           -0.035    15.064    
-    SLICE_X38Y31         FDRE (Setup_fdre_C_CE)      -0.371    14.693    inputMachine/M_a_q_reg[0]
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[0]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X45Y39         FDRE (Setup_fdre_C_CE)      -0.413    14.676    inputMachine/M_b_q_reg[0]
   -------------------------------------------------------------------
-                         required time                         14.693    
-                         arrival time                         -10.866    
+                         required time                         14.676    
+                         arrival time                         -10.494    
   -------------------------------------------------------------------
-                         slack                                  3.827    
+                         slack                                  4.182    
+
+Slack (MET) :             4.182ns  (required time - arrival time)
+  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            inputMachine/M_b_q_reg[11]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        5.343ns  (logic 1.104ns (20.664%)  route 4.239ns (79.336%))
+  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.263     9.505    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.657 r  inputMachine/M_b_q[15]_i_1/O
+                         net (fo=16, routed)          0.837    10.494    inputMachine/M_b_q[15]_i_1_n_1
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[11]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[11]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X45Y39         FDRE (Setup_fdre_C_CE)      -0.413    14.676    inputMachine/M_b_q_reg[11]
+  -------------------------------------------------------------------
+                         required time                         14.676    
+                         arrival time                         -10.494    
+  -------------------------------------------------------------------
+                         slack                                  4.182    
+
+Slack (MET) :             4.182ns  (required time - arrival time)
+  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            inputMachine/M_b_q_reg[12]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_0 rise@10.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        5.343ns  (logic 1.104ns (20.664%)  route 4.239ns (79.336%))
+  Logic Levels:           5  (LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.027ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.851ns = ( 14.851 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.151ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.517     1.517 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.488    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.584 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.567     5.151    buttoncond_gen_0[1].buttoncond/CLK
+    SLICE_X45Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X45Y44         FDRE (Prop_fdre_C_Q)         0.456     5.607 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]/Q
+                         net (fo=2, routed)           0.657     6.265    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[19]
+    SLICE_X44Y44         LUT4 (Prop_lut4_I2_O)        0.124     6.389 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0/O
+                         net (fo=1, routed)           0.303     6.691    buttoncond_gen_0[1].buttoncond/M_last_q_i_4__0_n_1
+    SLICE_X44Y43         LUT5 (Prop_lut5_I4_O)        0.124     6.815 f  buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0/O
+                         net (fo=1, routed)           0.730     7.545    buttoncond_gen_0[1].buttoncond/M_last_q_i_2__0_n_1
+    SLICE_X44Y40         LUT6 (Prop_lut6_I4_O)        0.124     7.669 r  buttoncond_gen_0[1].buttoncond/M_last_q_i_1__0/O
+                         net (fo=3, routed)           0.449     8.117    buttoncond_gen_0[1].buttoncond/M_buttoncond_out[0]
+    SLICE_X42Y41         LUT2 (Prop_lut2_I0_O)        0.124     8.241 r  buttoncond_gen_0[1].buttoncond/FSM_sequential_M_statemachine_q[1]_i_2/O
+                         net (fo=44, routed)          1.263     9.505    inputMachine/M_inputMachine_enter_button
+    SLICE_X47Y39         LUT3 (Prop_lut3_I0_O)        0.152     9.657 r  inputMachine/M_b_q[15]_i_1/O
+                         net (fo=16, routed)          0.837    10.494    inputMachine/M_b_q[15]_i_1_n_1
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[12]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)     10.000    10.000 r  
+    N14                                               0.000    10.000 r  clk (IN)
+                         net (fo=0)                   0.000    10.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         1.446    11.446 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.868    13.314    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.405 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         1.446    14.851    inputMachine/CLK
+    SLICE_X45Y39         FDRE                                         r  inputMachine/M_b_q_reg[12]/C
+                         clock pessimism              0.273    15.124    
+                         clock uncertainty           -0.035    15.089    
+    SLICE_X45Y39         FDRE (Setup_fdre_C_CE)      -0.413    14.676    inputMachine/M_b_q_reg[12]
+  -------------------------------------------------------------------
+                         required time                         14.676    
+                         arrival time                         -10.494    
+  -------------------------------------------------------------------
+                         slack                                  4.182    
 
 
 
@@ -916,19 +916,113 @@ Slack (MET) :             3.827ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.194ns  (arrival time - required time)
-  Source:                 reset_cond/M_stage_q_reg[2]/C
+Slack (MET) :             0.166ns  (arrival time - required time)
+  Source:                 reset_cond/M_stage_q_reg[1]/C
                             (rising edge-triggered cell FDSE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            reset_cond/M_stage_q_reg[3]/D
+  Destination:            reset_cond/M_stage_q_reg[2]/D
                             (rising edge-triggered cell FDSE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.277ns  (logic 0.164ns (59.205%)  route 0.113ns (40.795%))
+  Data Path Delay:        0.240ns  (logic 0.141ns (58.691%)  route 0.099ns (41.309%))
   Logic Levels:           0  
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.010ns
-    Source Clock Delay      (SCD):    1.497ns
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.016ns
+    Source Clock Delay      (SCD):    1.502ns
+    Clock Pessimism Removal (CPR):    0.499ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.558     1.502    reset_cond/CLK
+    SLICE_X37Y33         FDSE                                         r  reset_cond/M_stage_q_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y33         FDSE (Prop_fdse_C_Q)         0.141     1.643 r  reset_cond/M_stage_q_reg[1]/Q
+                         net (fo=1, routed)           0.099     1.742    reset_cond/M_stage_d[2]
+    SLICE_X38Y34         FDSE                                         r  reset_cond/M_stage_q_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.826     2.016    reset_cond/CLK
+    SLICE_X38Y34         FDSE                                         r  reset_cond/M_stage_q_reg[2]/C
+                         clock pessimism             -0.499     1.517    
+    SLICE_X38Y34         FDSE (Hold_fdse_C_D)         0.059     1.576    reset_cond/M_stage_q_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -1.576    
+                         arrival time                           1.742    
+  -------------------------------------------------------------------
+                         slack                                  0.166    
+
+Slack (MET) :             0.229ns  (arrival time - required time)
+  Source:                 buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.322ns  (logic 0.141ns (43.801%)  route 0.181ns (56.199%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.034ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.022ns
+    Source Clock Delay      (SCD):    1.508ns
+    Clock Pessimism Removal (CPR):    0.480ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.564     1.508    buttoncond_gen_0[0].buttoncond/sync/CLK
+    SLICE_X40Y47         FDRE                                         r  buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y47         FDRE (Prop_fdre_C_Q)         0.141     1.649 r  buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[0]/Q
+                         net (fo=1, routed)           0.181     1.830    buttoncond_gen_0[0].buttoncond/sync/M_pipe_d[1]
+    SLICE_X38Y44         FDRE                                         r  buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.832     2.022    buttoncond_gen_0[0].buttoncond/sync/CLK
+    SLICE_X38Y44         FDRE                                         r  buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[1]/C
+                         clock pessimism             -0.480     1.542    
+    SLICE_X38Y44         FDRE (Hold_fdre_C_D)         0.059     1.601    buttoncond_gen_0[0].buttoncond/sync/M_pipe_q_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -1.601    
+                         arrival time                           1.830    
+  -------------------------------------------------------------------
+                         slack                                  0.229    
+
+Slack (MET) :             0.244ns  (arrival time - required time)
+  Source:                 buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.329ns  (logic 0.164ns (49.814%)  route 0.165ns (50.186%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.015ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.024ns
+    Source Clock Delay      (SCD):    1.509ns
     Clock Pessimism Removal (CPR):    0.500ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -939,12 +1033,12 @@ Slack (MET) :             0.194ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.553     1.497    reset_cond/CLK
-    SLICE_X38Y28         FDSE                                         r  reset_cond/M_stage_q_reg[2]/C
+                         net (fo=120, routed)         0.565     1.509    buttoncond_gen_0[1].buttoncond/sync/CLK
+    SLICE_X46Y47         FDRE                                         r  buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X38Y28         FDSE (Prop_fdse_C_Q)         0.164     1.661 r  reset_cond/M_stage_q_reg[2]/Q
-                         net (fo=1, routed)           0.113     1.774    reset_cond/M_stage_d[3]
-    SLICE_X39Y28         FDSE                                         r  reset_cond/M_stage_q_reg[3]/D
+    SLICE_X46Y47         FDRE (Prop_fdre_C_Q)         0.164     1.673 r  buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[0]/Q
+                         net (fo=1, routed)           0.165     1.838    buttoncond_gen_0[1].buttoncond/sync/M_pipe_d__0[1]
+    SLICE_X44Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -953,30 +1047,30 @@ Slack (MET) :             0.194ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.820     2.010    reset_cond/CLK
-    SLICE_X39Y28         FDSE                                         r  reset_cond/M_stage_q_reg[3]/C
-                         clock pessimism             -0.500     1.510    
-    SLICE_X39Y28         FDSE (Hold_fdse_C_D)         0.070     1.580    reset_cond/M_stage_q_reg[3]
+                         net (fo=120, routed)         0.834     2.024    buttoncond_gen_0[1].buttoncond/sync/CLK
+    SLICE_X44Y44         FDRE                                         r  buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[1]/C
+                         clock pessimism             -0.500     1.524    
+    SLICE_X44Y44         FDRE (Hold_fdre_C_D)         0.070     1.594    buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.580    
-                         arrival time                           1.774    
+                         required time                         -1.594    
+                         arrival time                           1.838    
   -------------------------------------------------------------------
-                         slack                                  0.194    
+                         slack                                  0.244    
 
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.245ns  (arrival time - required time)
+  Source:                 reset_cond/M_stage_q_reg[0]/C
+                            (rising edge-triggered cell FDSE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            reset_cond/M_stage_q_reg[1]/D
+                            (rising edge-triggered cell FDSE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
-  Logic Levels:           1  (CARRY4=1)
+  Data Path Delay:        0.311ns  (logic 0.141ns (45.298%)  route 0.170ns (54.702%))
+  Logic Levels:           0  
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.515ns
+    Destination Clock Delay (DCD):    2.015ns
+    Source Clock Delay      (SCD):    1.502ns
+    Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -986,15 +1080,12 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.562     1.506    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y40         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
+                         net (fo=120, routed)         0.558     1.502    reset_cond/CLK
+    SLICE_X37Y33         FDSE                                         r  reset_cond/M_stage_q_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X37Y40         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/Q
-                         net (fo=2, routed)           0.117     1.764    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]
-    SLICE_X37Y40         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.872 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[8]_i_1/O[3]
-                         net (fo=1, routed)           0.000     1.872    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[8]_i_1_n_5
-    SLICE_X37Y40         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/D
+    SLICE_X37Y33         FDSE (Prop_fdse_C_Q)         0.141     1.643 r  reset_cond/M_stage_q_reg[0]/Q
+                         net (fo=1, routed)           0.170     1.813    reset_cond/M_stage_d[1]
+    SLICE_X37Y33         FDSE                                         r  reset_cond/M_stage_q_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1003,30 +1094,30 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.831     2.021    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y40         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
-                         clock pessimism             -0.515     1.506    
-    SLICE_X37Y40         FDRE (Hold_fdre_C_D)         0.105     1.611    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]
+                         net (fo=120, routed)         0.825     2.015    reset_cond/CLK
+    SLICE_X37Y33         FDSE                                         r  reset_cond/M_stage_q_reg[1]/C
+                         clock pessimism             -0.513     1.502    
+    SLICE_X37Y33         FDSE (Hold_fdse_C_D)         0.066     1.568    reset_cond/M_stage_q_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.611    
-                         arrival time                           1.872    
+                         required time                         -1.568    
+                         arrival time                           1.813    
   -------------------------------------------------------------------
-                         slack                                  0.261    
+                         slack                                  0.245    
 
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/C
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/D
+  Destination:            slowclock/M_ctr_q_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
   Logic Levels:           1  (CARRY4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.515ns
+    Destination Clock Delay (DCD):    2.013ns
+    Source Clock Delay      (SCD):    1.500ns
+    Clock Pessimism Removal (CPR):    0.513ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1036,15 +1127,15 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.562     1.506    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y41         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/C
+                         net (fo=120, routed)         0.556     1.500    slowclock/CLK
+    SLICE_X39Y31         FDRE                                         r  slowclock/M_ctr_q_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X37Y41         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/Q
-                         net (fo=2, routed)           0.117     1.764    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]
-    SLICE_X37Y41         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.872 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[12]_i_1/O[3]
-                         net (fo=1, routed)           0.000     1.872    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[12]_i_1_n_5
-    SLICE_X37Y41         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/D
+    SLICE_X39Y31         FDRE (Prop_fdre_C_Q)         0.141     1.641 r  slowclock/M_ctr_q_reg[3]/Q
+                         net (fo=1, routed)           0.108     1.749    slowclock/M_ctr_q_reg_n_1_[3]
+    SLICE_X39Y31         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.857 r  slowclock/M_ctr_q_reg[0]_i_1/O[3]
+                         net (fo=1, routed)           0.000     1.857    slowclock/M_ctr_q_reg[0]_i_1_n_5
+    SLICE_X39Y31         FDRE                                         r  slowclock/M_ctr_q_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1053,30 +1144,30 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.831     2.021    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y41         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/C
-                         clock pessimism             -0.515     1.506    
-    SLICE_X37Y41         FDRE (Hold_fdre_C_D)         0.105     1.611    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]
+                         net (fo=120, routed)         0.823     2.013    slowclock/CLK
+    SLICE_X39Y31         FDRE                                         r  slowclock/M_ctr_q_reg[3]/C
+                         clock pessimism             -0.513     1.500    
+    SLICE_X39Y31         FDRE (Hold_fdre_C_D)         0.105     1.605    slowclock/M_ctr_q_reg[3]
   -------------------------------------------------------------------
-                         required time                         -1.611    
-                         arrival time                           1.872    
+                         required time                         -1.605    
+                         arrival time                           1.857    
   -------------------------------------------------------------------
-                         slack                                  0.261    
+                         slack                                  0.252    
 
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/C
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[19]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/D
+  Destination:            slowclock/M_ctr_q_reg[19]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
   Logic Levels:           1  (CARRY4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.515ns
+    Destination Clock Delay (DCD):    2.017ns
+    Source Clock Delay      (SCD):    1.503ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1086,15 +1177,15 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.562     1.506    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y42         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/C
+                         net (fo=120, routed)         0.559     1.503    slowclock/CLK
+    SLICE_X39Y35         FDRE                                         r  slowclock/M_ctr_q_reg[19]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X37Y42         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/Q
-                         net (fo=2, routed)           0.117     1.764    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]
-    SLICE_X37Y42         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.872 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[16]_i_1/O[3]
-                         net (fo=1, routed)           0.000     1.872    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[16]_i_1_n_5
-    SLICE_X37Y42         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/D
+    SLICE_X39Y35         FDRE (Prop_fdre_C_Q)         0.141     1.644 r  slowclock/M_ctr_q_reg[19]/Q
+                         net (fo=1, routed)           0.108     1.752    slowclock/M_ctr_q_reg_n_1_[19]
+    SLICE_X39Y35         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.860 r  slowclock/M_ctr_q_reg[16]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000     1.860    slowclock/M_ctr_q_reg[16]_i_1__1_n_5
+    SLICE_X39Y35         FDRE                                         r  slowclock/M_ctr_q_reg[19]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1103,30 +1194,30 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.831     2.021    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y42         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/C
-                         clock pessimism             -0.515     1.506    
-    SLICE_X37Y42         FDRE (Hold_fdre_C_D)         0.105     1.611    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]
+                         net (fo=120, routed)         0.827     2.017    slowclock/CLK
+    SLICE_X39Y35         FDRE                                         r  slowclock/M_ctr_q_reg[19]/C
+                         clock pessimism             -0.514     1.503    
+    SLICE_X39Y35         FDRE (Hold_fdre_C_D)         0.105     1.608    slowclock/M_ctr_q_reg[19]
   -------------------------------------------------------------------
-                         required time                         -1.611    
-                         arrival time                           1.872    
+                         required time                         -1.608    
+                         arrival time                           1.860    
   -------------------------------------------------------------------
-                         slack                                  0.261    
+                         slack                                  0.252    
 
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/C
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[23]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/D
+  Destination:            slowclock/M_ctr_q_reg[23]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
   Logic Levels:           1  (CARRY4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.022ns
-    Source Clock Delay      (SCD):    1.506ns
-    Clock Pessimism Removal (CPR):    0.516ns
+    Destination Clock Delay (DCD):    2.017ns
+    Source Clock Delay      (SCD):    1.503ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1136,15 +1227,15 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.562     1.506    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y40         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/C
+                         net (fo=120, routed)         0.559     1.503    slowclock/CLK
+    SLICE_X39Y36         FDRE                                         r  slowclock/M_ctr_q_reg[23]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y40         FDRE (Prop_fdre_C_Q)         0.141     1.647 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/Q
-                         net (fo=2, routed)           0.117     1.764    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]
-    SLICE_X41Y40         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.872 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[12]_i_1__0/O[3]
-                         net (fo=1, routed)           0.000     1.872    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[12]_i_1__0_n_5
-    SLICE_X41Y40         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/D
+    SLICE_X39Y36         FDRE (Prop_fdre_C_Q)         0.141     1.644 r  slowclock/M_ctr_q_reg[23]/Q
+                         net (fo=1, routed)           0.108     1.752    slowclock/M_ctr_q_reg_n_1_[23]
+    SLICE_X39Y36         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.860 r  slowclock/M_ctr_q_reg[20]_i_1/O[3]
+                         net (fo=1, routed)           0.000     1.860    slowclock/M_ctr_q_reg[20]_i_1_n_5
+    SLICE_X39Y36         FDRE                                         r  slowclock/M_ctr_q_reg[23]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1153,30 +1244,130 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.832     2.022    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y40         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]/C
-                         clock pessimism             -0.516     1.506    
-    SLICE_X41Y40         FDRE (Hold_fdre_C_D)         0.105     1.611    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[15]
+                         net (fo=120, routed)         0.827     2.017    slowclock/CLK
+    SLICE_X39Y36         FDRE                                         r  slowclock/M_ctr_q_reg[23]/C
+                         clock pessimism             -0.514     1.503    
+    SLICE_X39Y36         FDRE (Hold_fdre_C_D)         0.105     1.608    slowclock/M_ctr_q_reg[23]
   -------------------------------------------------------------------
-                         required time                         -1.611    
-                         arrival time                           1.872    
+                         required time                         -1.608    
+                         arrival time                           1.860    
   -------------------------------------------------------------------
-                         slack                                  0.261    
+                         slack                                  0.252    
 
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/C
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[11]/C
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/D
+  Destination:            slowclock/M_ctr_q_reg[11]/D
                             (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
   Logic Levels:           1  (CARRY4=1)
   Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.019ns
+    Destination Clock Delay (DCD):    2.015ns
+    Source Clock Delay      (SCD):    1.502ns
+    Clock Pessimism Removal (CPR):    0.513ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.558     1.502    slowclock/CLK
+    SLICE_X39Y33         FDRE                                         r  slowclock/M_ctr_q_reg[11]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y33         FDRE (Prop_fdre_C_Q)         0.141     1.643 r  slowclock/M_ctr_q_reg[11]/Q
+                         net (fo=1, routed)           0.108     1.751    slowclock/M_ctr_q_reg_n_1_[11]
+    SLICE_X39Y33         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.859 r  slowclock/M_ctr_q_reg[8]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000     1.859    slowclock/M_ctr_q_reg[8]_i_1__1_n_5
+    SLICE_X39Y33         FDRE                                         r  slowclock/M_ctr_q_reg[11]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.825     2.015    slowclock/CLK
+    SLICE_X39Y33         FDRE                                         r  slowclock/M_ctr_q_reg[11]/C
+                         clock pessimism             -0.513     1.502    
+    SLICE_X39Y33         FDRE (Hold_fdre_C_D)         0.105     1.607    slowclock/M_ctr_q_reg[11]
+  -------------------------------------------------------------------
+                         required time                         -1.607    
+                         arrival time                           1.859    
+  -------------------------------------------------------------------
+                         slack                                  0.252    
+
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[15]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            slowclock/M_ctr_q_reg[15]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.016ns
+    Source Clock Delay      (SCD):    1.503ns
+    Clock Pessimism Removal (CPR):    0.513ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.918    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.559     1.503    slowclock/CLK
+    SLICE_X39Y34         FDRE                                         r  slowclock/M_ctr_q_reg[15]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X39Y34         FDRE (Prop_fdre_C_Q)         0.141     1.644 r  slowclock/M_ctr_q_reg[15]/Q
+                         net (fo=1, routed)           0.108     1.752    slowclock/M_ctr_q_reg_n_1_[15]
+    SLICE_X39Y34         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.860 r  slowclock/M_ctr_q_reg[12]_i_1__1/O[3]
+                         net (fo=1, routed)           0.000     1.860    slowclock/M_ctr_q_reg[12]_i_1__1_n_5
+    SLICE_X39Y34         FDRE                                         r  slowclock/M_ctr_q_reg[15]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_0 rise edge)      0.000     0.000 r  
+    N14                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.161    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
+                         net (fo=120, routed)         0.826     2.016    slowclock/CLK
+    SLICE_X39Y34         FDRE                                         r  slowclock/M_ctr_q_reg[15]/C
+                         clock pessimism             -0.513     1.503    
+    SLICE_X39Y34         FDRE (Hold_fdre_C_D)         0.105     1.608    slowclock/M_ctr_q_reg[15]
+  -------------------------------------------------------------------
+                         required time                         -1.608    
+                         arrival time                           1.860    
+  -------------------------------------------------------------------
+                         slack                                  0.252    
+
+Slack (MET) :             0.252ns  (arrival time - required time)
+  Source:                 slowclock/M_ctr_q_reg[27]/C
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            slowclock/M_ctr_q_reg[27]/D
+                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
+  Data Path Delay:        0.357ns  (logic 0.249ns (69.714%)  route 0.108ns (30.286%))
+  Logic Levels:           1  (CARRY4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.018ns
     Source Clock Delay      (SCD):    1.504ns
-    Clock Pessimism Removal (CPR):    0.515ns
+    Clock Pessimism Removal (CPR):    0.514ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1186,15 +1377,15 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.634     0.918    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.560     1.504    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y37         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/C
+                         net (fo=120, routed)         0.560     1.504    slowclock/CLK
+    SLICE_X39Y37         FDRE                                         r  slowclock/M_ctr_q_reg[27]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X41Y37         FDRE (Prop_fdre_C_Q)         0.141     1.645 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/Q
-                         net (fo=2, routed)           0.117     1.762    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]
-    SLICE_X41Y37         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.870 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[0]_i_3__0/O[3]
-                         net (fo=1, routed)           0.000     1.870    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[0]_i_3__0_n_5
-    SLICE_X41Y37         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/D
+    SLICE_X39Y37         FDRE (Prop_fdre_C_Q)         0.141     1.645 r  slowclock/M_ctr_q_reg[27]/Q
+                         net (fo=1, routed)           0.108     1.753    slowclock/M_ctr_q_reg_n_1_[27]
+    SLICE_X39Y37         CARRY4 (Prop_carry4_S[3]_O[3])
+                                                      0.108     1.861 r  slowclock/M_ctr_q_reg[24]_i_1/O[3]
+                         net (fo=1, routed)           0.000     1.861    slowclock/M_ctr_q_reg[24]_i_1_n_5
+    SLICE_X39Y37         FDRE                                         r  slowclock/M_ctr_q_reg[27]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_0 rise edge)      0.000     0.000 r  
@@ -1203,215 +1394,15 @@ Slack (MET) :             0.261ns  (arrival time - required time)
     N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.689     1.161    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.829     2.019    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y37         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]/C
-                         clock pessimism             -0.515     1.504    
-    SLICE_X41Y37         FDRE (Hold_fdre_C_D)         0.105     1.609    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[3]
+                         net (fo=120, routed)         0.828     2.018    slowclock/CLK
+    SLICE_X39Y37         FDRE                                         r  slowclock/M_ctr_q_reg[27]/C
+                         clock pessimism             -0.514     1.504    
+    SLICE_X39Y37         FDRE (Hold_fdre_C_D)         0.105     1.609    slowclock/M_ctr_q_reg[27]
   -------------------------------------------------------------------
                          required time                         -1.609    
-                         arrival time                           1.870    
+                         arrival time                           1.861    
   -------------------------------------------------------------------
-                         slack                                  0.261    
-
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.020ns
-    Source Clock Delay      (SCD):    1.505ns
-    Clock Pessimism Removal (CPR):    0.515ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.561     1.505    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y39         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X37Y39         FDRE (Prop_fdre_C_Q)         0.141     1.646 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/Q
-                         net (fo=2, routed)           0.117     1.763    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]
-    SLICE_X37Y39         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.871 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[4]_i_1/O[3]
-                         net (fo=1, routed)           0.000     1.871    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[4]_i_1_n_5
-    SLICE_X37Y39         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.830     2.020    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y39         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]/C
-                         clock pessimism             -0.515     1.505    
-    SLICE_X37Y39         FDRE (Hold_fdre_C_D)         0.105     1.610    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[7]
-  -------------------------------------------------------------------
-                         required time                         -1.610    
-                         arrival time                           1.871    
-  -------------------------------------------------------------------
-                         slack                                  0.261    
-
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.505ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.561     1.505    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y39         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X41Y39         FDRE (Prop_fdre_C_Q)         0.141     1.646 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/Q
-                         net (fo=2, routed)           0.117     1.763    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]
-    SLICE_X41Y39         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.871 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[8]_i_1__0/O[3]
-                         net (fo=1, routed)           0.000     1.871    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[8]_i_1__0_n_5
-    SLICE_X41Y39         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.831     2.021    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y39         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]/C
-                         clock pessimism             -0.516     1.505    
-    SLICE_X41Y39         FDRE (Hold_fdre_C_D)         0.105     1.610    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[11]
-  -------------------------------------------------------------------
-                         required time                         -1.610    
-                         arrival time                           1.871    
-  -------------------------------------------------------------------
-                         slack                                  0.261    
-
-Slack (MET) :             0.261ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.366ns  (logic 0.249ns (67.994%)  route 0.117ns (32.006%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.021ns
-    Source Clock Delay      (SCD):    1.505ns
-    Clock Pessimism Removal (CPR):    0.516ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.561     1.505    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y38         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X41Y38         FDRE (Prop_fdre_C_Q)         0.141     1.646 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/Q
-                         net (fo=2, routed)           0.117     1.763    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]
-    SLICE_X41Y38         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.871 r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[4]_i_1__0/O[3]
-                         net (fo=1, routed)           0.000     1.871    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[4]_i_1__0_n_5
-    SLICE_X41Y38         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.831     2.021    buttoncond_gen_0[1].buttoncond/CLK
-    SLICE_X41Y38         FDRE                                         r  buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]/C
-                         clock pessimism             -0.516     1.505    
-    SLICE_X41Y38         FDRE (Hold_fdre_C_D)         0.105     1.610    buttoncond_gen_0[1].buttoncond/M_ctr_q_reg[7]
-  -------------------------------------------------------------------
-                         required time                         -1.610    
-                         arrival time                           1.871    
-  -------------------------------------------------------------------
-                         slack                                  0.261    
-
-Slack (MET) :             0.263ns  (arrival time - required time)
-  Source:                 buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/C
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/D
-                            (rising edge-triggered cell FDRE clocked by clk_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_0
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_0 rise@0.000ns - clk_0 rise@0.000ns)
-  Data Path Delay:        0.368ns  (logic 0.249ns (67.612%)  route 0.119ns (32.388%))
-  Logic Levels:           1  (CARRY4=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.020ns
-    Source Clock Delay      (SCD):    1.505ns
-    Clock Pessimism Removal (CPR):    0.515ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.284     0.284 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.634     0.918    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.944 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.561     1.505    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y38         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X37Y38         FDRE (Prop_fdre_C_Q)         0.141     1.646 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/Q
-                         net (fo=2, routed)           0.119     1.765    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]
-    SLICE_X37Y38         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     1.873 r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[0]_i_3/O[3]
-                         net (fo=1, routed)           0.000     1.873    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[0]_i_3_n_5
-    SLICE_X37Y38         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_0 rise edge)      0.000     0.000 r  
-    N14                                               0.000     0.000 r  clk (IN)
-                         net (fo=0)                   0.000     0.000    clk
-    N14                  IBUF (Prop_ibuf_I_O)         0.472     0.472 r  clk_IBUF_inst/O
-                         net (fo=1, routed)           0.689     1.161    clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.190 r  clk_IBUF_BUFG_inst/O
-                         net (fo=120, routed)         0.830     2.020    buttoncond_gen_0[0].buttoncond/CLK
-    SLICE_X37Y38         FDRE                                         r  buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]/C
-                         clock pessimism             -0.515     1.505    
-    SLICE_X37Y38         FDRE (Hold_fdre_C_D)         0.105     1.610    buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[3]
-  -------------------------------------------------------------------
-                         required time                         -1.610    
-                         arrival time                           1.873    
-  -------------------------------------------------------------------
-                         slack                                  0.263    
+                         slack                                  0.252    
 
 
 
@@ -1426,35 +1417,35 @@ Sources:            { clk }
 
 Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0  clk_IBUF_BUFG_inst/I
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y36   M_testMode_q_reg/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y38   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[0]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y40   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[10]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y40   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y41   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[12]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y41   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[14]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y41   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[15]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y42   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[16]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X37Y42   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[17]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X38Y31   inputMachine/M_a_q_reg[0]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X38Y31   inputMachine/M_a_q_reg[2]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X38Y31   inputMachine/M_a_q_reg[3]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X38Y31   inputMachine/M_a_q_reg[7]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y30   inputMachine/M_alufn_q_reg[0]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y30   inputMachine/M_alufn_q_reg[1]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X36Y31   slowclock/M_ctr_q_reg[14]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X36Y31   slowclock/M_ctr_q_reg[15]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X36Y30   slowclock/M_ctr_q_reg[8]/C
-Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X36Y30   slowclock/M_ctr_q_reg[9]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y36   M_testMode_q_reg/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y35   inputMachine/M_a_q_reg[10]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y35   inputMachine/M_a_q_reg[11]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y33   inputMachine/M_a_q_reg[12]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y33   inputMachine/M_a_q_reg[13]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y35   inputMachine/M_a_q_reg[14]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y35   inputMachine/M_a_q_reg[15]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X40Y32   inputMachine/M_a_q_reg[1]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X37Y35   inputMachine/M_a_q_reg[4]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X40Y32   inputMachine/M_a_q_reg[5]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X40Y42   M_testMode_q_reg/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y41   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[0]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y43   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[10]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y43   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y44   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[12]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y44   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[13]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y45   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[17]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y45   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[18]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X39Y45   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[19]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y31   slowclock/M_ctr_q_reg[2]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y31   slowclock/M_ctr_q_reg[3]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y31   slowclock/M_ctr_q_reg[1]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y31   slowclock/M_ctr_q_reg[0]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X40Y42   M_testMode_q_reg/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y41   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[0]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y43   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[10]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y43   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[11]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y44   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[12]/C
+Low Pulse Width   Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y44   buttoncond_gen_0[0].buttoncond/M_ctr_q_reg[13]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X46Y47   buttoncond_gen_0[1].buttoncond/sync/M_pipe_q_reg[0]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y33   slowclock/M_ctr_q_reg[10]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y33   slowclock/M_ctr_q_reg[11]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y34   slowclock/M_ctr_q_reg[12]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y34   slowclock/M_ctr_q_reg[13]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y34   slowclock/M_ctr_q_reg[14]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y34   slowclock/M_ctr_q_reg[15]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y35   slowclock/M_ctr_q_reg[16]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y35   slowclock/M_ctr_q_reg[17]/C
+High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X39Y35   slowclock/M_ctr_q_reg[18]/C
 
 
 

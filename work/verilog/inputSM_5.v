@@ -89,15 +89,6 @@ module inputSM_5 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_b_q <= 1'h0;
-    end else begin
-      M_b_q <= M_b_d;
-    end
-  end
-  
-  
-  always @(posedge clk) begin
-    if (rst == 1'b1) begin
       M_statemachine_q <= 1'h0;
     end else begin
       M_statemachine_q <= M_statemachine_d;
@@ -110,6 +101,15 @@ module inputSM_5 (
       M_a_q <= 1'h0;
     end else begin
       M_a_q <= M_a_d;
+    end
+  end
+  
+  
+  always @(posedge clk) begin
+    if (rst == 1'b1) begin
+      M_b_q <= 1'h0;
+    end else begin
+      M_b_q <= M_b_d;
     end
   end
   

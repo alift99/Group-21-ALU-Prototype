@@ -1,6 +1,7 @@
 module autoTester (
     input clk,  // clock
     input rst,  // reset
+    input simErrorSwitch,
     output a[16],
     output b[16],
     output alufn[6],
@@ -61,7 +62,7 @@ module autoTester (
     b = 16b0;
     alufn = 6b0;
     solution = 16b0;
-    simError = 0;
+    simError = simErrorSwitch;
     case(testState.q)
     {
       testState.TESTCASE1:
@@ -69,57 +70,58 @@ module autoTester (
         b = B_ROM[0];
         alufn = ALUFN_ROM[0];
         solution = SOLUTION_ROM[0];
-        simError = 0;
+        //simError = 0;
         testState.d = testState.TESTCASE2;  
       testState.TESTCASE2:
         a = A_ROM[1];
         b = B_ROM[1];
         alufn = ALUFN_ROM[1];
         solution = SOLUTION_ROM[1];
-        simError = 1;
+        //simError = 1;
         testState.d = testState.TESTCASE3; 
       testState.TESTCASE3:
         a = A_ROM[2];
         b = B_ROM[2];
         alufn = ALUFN_ROM[2];
         solution = SOLUTION_ROM[2];
-        simError = 0;
+        //simError = 0;
         testState.d = testState.TESTCASE4; 
       testState.TESTCASE4:
         a = A_ROM[3];
         b = B_ROM[3];
         alufn = ALUFN_ROM[3];
         solution = SOLUTION_ROM[3];
-        simError = 1;
+        //simError = 1;
         testState.d = testState.TESTCASE5; 
       testState.TESTCASE5:
         a = A_ROM[4];
         b = B_ROM[4];
         alufn = ALUFN_ROM[4];
         solution = SOLUTION_ROM[4];
-        simError = 0;
+        //simError = 0;
         testState.d = testState.TESTCASE6; 
       testState.TESTCASE6:
         a = A_ROM[5];
         b = B_ROM[5];
         alufn = ALUFN_ROM[5];
         solution = SOLUTION_ROM[5];
-        simError = 1;
+        //simError = 1;
         testState.d = testState.TESTCASE7; 
       testState.TESTCASE7:
         a = A_ROM[6];
         b = B_ROM[6];
         alufn = ALUFN_ROM[6];
         solution = SOLUTION_ROM[6];
-        simError = 0;
+        //simError = 0;
         testState.d = testState.TESTCASE8; 
       testState.TESTCASE8:
         a = A_ROM[7];
         b = B_ROM[7];
         alufn = ALUFN_ROM[7];
         solution = SOLUTION_ROM[7];
-        simError = 1;
+        //simError = 1;
         testState.d = testState.TESTCASE1;                  
-    }       
+    }
+           
   }
 }

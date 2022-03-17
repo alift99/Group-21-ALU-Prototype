@@ -52,6 +52,7 @@ module au_top (
     inputMachine.enter_button = buttondetector.out[1]; // feed button signal into inputSM's input
     inputMachine.input_switches[7:0] = io_dip[0][7:0];
     inputMachine.input_switches[15:8] = io_dip[1][7:0];
+    autoTestMachine.simErrorSwitch = io_dip[2][7];
     
     case(testMode.q)
     {

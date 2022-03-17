@@ -7,6 +7,7 @@
 module autoTester_7 (
     input clk,
     input rst,
+    input simErrorSwitch,
     output reg [15:0] a,
     output reg [15:0] b,
     output reg [5:0] alufn,
@@ -43,7 +44,7 @@ module autoTester_7 (
     b = 16'h0000;
     alufn = 6'h00;
     solution = 16'h0000;
-    simError = 1'h0;
+    simError = simErrorSwitch;
     
     case (M_testState_q)
       TESTCASE1_testState: begin
@@ -51,7 +52,6 @@ module autoTester_7 (
         b = 16'h0004;
         alufn = 6'h35;
         solution = 16'h0001;
-        simError = 1'h0;
         M_testState_d = TESTCASE2_testState;
       end
       TESTCASE2_testState: begin
@@ -59,7 +59,6 @@ module autoTester_7 (
         b = 16'h0100;
         alufn = 6'h33;
         solution = 16'h0001;
-        simError = 1'h1;
         M_testState_d = TESTCASE3_testState;
       end
       TESTCASE3_testState: begin
@@ -67,7 +66,6 @@ module autoTester_7 (
         b = 16'h8005;
         alufn = 6'h16;
         solution = 16'h8003;
-        simError = 1'h0;
         M_testState_d = TESTCASE4_testState;
       end
       TESTCASE4_testState: begin
@@ -75,7 +73,6 @@ module autoTester_7 (
         b = 16'h4563;
         alufn = 6'h18;
         solution = 16'h0423;
-        simError = 1'h1;
         M_testState_d = TESTCASE5_testState;
       end
       TESTCASE5_testState: begin
@@ -83,7 +80,6 @@ module autoTester_7 (
         b = 16'h0001;
         alufn = 6'h23;
         solution = 16'hc00b;
-        simError = 1'h0;
         M_testState_d = TESTCASE6_testState;
       end
       TESTCASE6_testState: begin
@@ -91,7 +87,6 @@ module autoTester_7 (
         b = 16'h0004;
         alufn = 6'h20;
         solution = 16'h0050;
-        simError = 1'h1;
         M_testState_d = TESTCASE7_testState;
       end
       TESTCASE7_testState: begin
@@ -99,7 +94,6 @@ module autoTester_7 (
         b = 16'h0018;
         alufn = 6'h01;
         solution = 16'h0028;
-        simError = 1'h0;
         M_testState_d = TESTCASE8_testState;
       end
       TESTCASE8_testState: begin
@@ -107,7 +101,6 @@ module autoTester_7 (
         b = 16'h0005;
         alufn = 6'h00;
         solution = 16'h000f;
-        simError = 1'h1;
         M_testState_d = TESTCASE1_testState;
       end
     endcase
